@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "title": "Green Valley Lakeview Villa",
+    "description": "A gorgeous 3-bedroom townhouse overlooking the serene landscapes near Lake Nakuru. Ideal for family vacations looking for peace, space, and comfort.",
+    "price": 15000,
+    "county": "Nakuru",
+    "location": "Racecourse",
+    "listingType": "Short Term",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800"
+    ],
+    "mapEmbedUrl": ""
+  }
+]

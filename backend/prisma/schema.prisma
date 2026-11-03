@@ -1,0 +1,33 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum ListingType {
+  SHORT_TERM
+  LONG_TERM
+}
+
+model Property {
+  id              String      @id @default(uuid())
+  title           String
+  description     String
+  listingType     ListingType // SHORT_TERM (BNB) or LONG_TERM (Rental)
+  county          String      // Nairobi, Ruiru, Nakuru, Diani, etc.
+  location        String
+  price           Float       // Nightly rate for short term, monthly for long term
+  securityDeposit Float?
+  bedrooms        Int
+  bathrooms       Int
+  maxGuests       Int?
+  squareFeet      Float?
+  amenities       String[]    // Array of amenities (e.g., ['WiFi', 'Borehole', 'Pool'])
+  images          String[]    // Image URLs
+  isFeatured      Boolean     @default(false)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
