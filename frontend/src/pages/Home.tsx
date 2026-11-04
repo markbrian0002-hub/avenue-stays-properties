@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+const API_BASE_URL =
+  (import.meta as ImportMeta & { env: { VITE_API_BASE_URL?: string } }).env.VITE_API_BASE_URL ??
+  'http://localhost:5000/api';
 
 interface Property {
   id: string;
@@ -81,7 +84,7 @@ export default function Home() {
   const [editImagePreviews, setEditImagePreviews] = useState<string[]>([]);
 
   const fetchProperties = () => {
-    fetch('http://localhost:5000/api/properties')
+    fetch (`${API_BASE_URL}/properties`)
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch properties from server');
         return res.json();
@@ -264,7 +267,7 @@ export default function Home() {
       images: imagePreviews.length > 0 ? imagePreviews : ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800']
     };
 
-    fetch('http://localhost:5000/api/properties', {
+    fetch(`${API_BASE_URL}/properties`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -290,7 +293,7 @@ export default function Home() {
   const handleDeleteProperty = (id: string) => {
     if (!window.confirm('Are you sure you want to delete this property listing?')) return;
 
-    fetch(`http://localhost:5000/api/properties/${id}`, {
+    fetch(`${API_BASE_URL}/properties/${id}`, {
       method: 'DELETE',
     })
       .then((res) => {
@@ -334,7 +337,7 @@ export default function Home() {
       images: editImagePreviews.length > 0 ? editImagePreviews : editingProperty.images
     };
 
-    fetch(`http://localhost:5000/api/properties/${editingProperty.id}`, {
+    fetch(`${API_BASE_URL}/properties/${editingProperty.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
